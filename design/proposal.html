@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VK Apartments — Design Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --limestone:#F4EFE8; --malachite:#17302A; --copper:#A85A32; --copper-lt:#C77B4A;
+    --sand:#D9C4A5; --blush:#E9C9B6; --ink:#1B1B19; --muted:#5E5A52;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--limestone);color:var(--ink);font-family:Archivo,sans-serif;font-stretch:100%;line-height:1.55;font-size:16px;position:relative}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.08;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+  @media(min-width:768px){.wrap{padding:0 40px}}
+  section{padding:72px 0;border-top:1px solid #0001}
+  .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--copper);font-weight:600;margin-bottom:16px}
+  .display{font-stretch:118%;font-weight:300;text-transform:uppercase;line-height:.92;letter-spacing:-.01em}
+  .serif{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;text-transform:none;letter-spacing:0}
+  h2{font-size:clamp(28px,4vw,44px);margin-bottom:24px}
+  p.lead{max-width:62ch;color:var(--muted)}
+  .hero{background:var(--malachite);color:var(--limestone);padding:96px 0 80px;border:0}
+  .hero h1{font-size:clamp(48px,10vw,140px)}
+  .hero h1 .serif{color:var(--blush);display:block;font-size:.62em;margin-bottom:-.05em}
+  .hero p{color:var(--sand);max-width:56ch;margin-top:32px}
+  .grid{display:grid;gap:16px}
+  @media(min-width:768px){.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:1fr 1fr}.g4{grid-template-columns:repeat(4,1fr)}}
+  .card{background:#fff8;border:1px solid #0000000f;padding:24px;border-radius:2px}
+  .card.rec{outline:2px solid var(--copper);outline-offset:-2px}
+  .tag{display:inline-block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:var(--copper);color:#fff;padding:3px 8px;margin-bottom:12px}
+  .sw{display:flex;height:96px;margin:16px 0 12px}
+  .sw div{flex:1;display:flex;align-items:flex-end;padding:6px;font-size:10px;font-family:monospace}
+  .chamfer{clip-path:polygon(28px 0,100% 0,100% calc(100% - 28px),calc(100% - 28px) 100%,0 100%,0 28px)}
+  .photo{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+  .spec{display:flex;flex-direction:column;gap:20px}
+  .spec .row{display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:baseline;border-bottom:1px solid #0001;padding-bottom:16px}
+  .spec small{font-family:monospace;color:var(--muted);font-size:11px}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  td,th{text-align:left;padding:10px 8px;border-bottom:1px solid #0001;vertical-align:top}
+  th{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .wf{display:grid;gap:12px}
+  .wf .s{display:grid;grid-template-columns:44px 1fr;gap:16px;background:#fff9;border:1px solid #0000000f;padding:18px}
+  @media(min-width:900px){.wf .s{grid-template-columns:44px 300px 1fr}}
+  .wf .n{font-stretch:118%;font-size:28px;font-weight:300;color:var(--copper);line-height:1}
+  .wf h3{font-size:15px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .wf .box{grid-column:2/-1;font-size:14px;color:var(--muted)}
+  @media(min-width:900px){.wf .box{grid-column:auto}}
+  .mini{height:64px;background:repeating-linear-gradient(90deg,#0000000a 0 1px,transparent 1px 24px),var(--sand);opacity:.6;margin-top:10px;position:relative;font-size:10px;font-family:monospace;padding:4px}
+  .dark{background:var(--malachite);color:var(--limestone)}
+  .dark p.lead{color:var(--sand)}
+  .dark .card{background:#ffffff0a;border-color:#ffffff1a}
+  .q li{margin:0 0 12px 20px;max-width:75ch}
+  svg{display:block}
+  a{color:var(--copper)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--copper-lt)">Design proposal · v1 · for review</div>
+    <h1 class="display"><span class="serif">Live well in</span>Nkana East</h1>
+    <p>Proposed brand system and section-by-section wireframe for the VK Apartments site. Nothing has been coded yet. Pick a palette, check the motif, answer the open questions at the bottom, and I'll start building.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">01 · Concept</div>
+    <h2 class="display"><span class="serif">Copper, malachite</span> &amp; home</h2>
+    <p class="lead">Kitwe is the heart of the Copperbelt. The brand draws on two colours that come from the ground there: <b>copper</b> and <b>malachite</b>, the green copper ore. They sit on a warm limestone off-white. The motif comes from the property itself: the <b>hexagonal paving</b> in the courtyard and the <b>ore-vein lines</b> of a copper seam. This gives the site its own identity instead of borrowing the reference's arches and waves. The tone is warm, unhurried and lifestyle-first: <i>a home that shapes how you live.</i></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">02 · Palette options</div>
+    <h2 class="display">Choose one</h2>
+    <div class="grid g3">
+      <div class="card rec">
+        <span class="tag">Recommended</span>
+        <h3>A · Copper &amp; Malachite</h3>
+        <div class="sw"><div style="background:#17302A;color:#F4EFE8">#17302A</div><div style="background:#A85A32;color:#fff">#A85A32</div><div style="background:#D9C4A5">#D9C4A5</div><div style="background:#E9C9B6">#E9C9B6</div><div style="background:#F4EFE8;border:1px solid #0001">#F4EFE8</div></div>
+        <p style="font-size:14px;color:var(--muted)">Deep malachite for dark sections, copper for CTAs and accents, warm sand, soft blush for italic accents, limestone background. Copper on limestone is about 6:1 (AA for body text). Blush and sand on malachite pass AA.</p>
+      </div>
+      <div class="card">
+        <h3>B · Terracotta Courtyard</h3>
+        <div class="sw"><div style="background:#2C2A26;color:#F6F1EA">#2C2A26</div><div style="background:#B4553C;color:#fff">#B4553C</div><div style="background:#E7D3B8">#E7D3B8</div><div style="background:#7C8B6F;color:#fff">#7C8B6F</div><div style="background:#F6F1EA;border:1px solid #0001">#F6F1EA</div></div>
+        <p style="font-size:14px;color:var(--muted)">Taken from the real terracotta and sand hex pavers, with charcoal and sage. Earthier and more "garden", and less distinctive as a brand.</p>
+      </div>
+      <div class="card">
+        <h3>C · Night Pool</h3>
+        <div class="sw"><div style="background:#1C2633;color:#F3F0EB">#1C2633</div><div style="background:#B87A4B;color:#fff">#B87A4B</div><div style="background:#8FB5C4">#8FB5C4</div><div style="background:#E2D5C3">#E2D5C3</div><div style="background:#F3F0EB;border:1px solid #0001">#F3F0EB</div></div>
+        <p style="font-size:14px;color:var(--muted)">Midnight blue with copper and pool-water blue. Cooler and more "resort". It sits closest to the reference site's slate mood.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap grid g2" style="gap:48px">
+    <div>
+      <div class="eyebrow">03 · Typography</div>
+      <h2 class="display">Two families</h2>
+      <p class="lead">Two families keep loading fast. Both are self-hosted through <code>next/font</code>.</p>
+      <div class="spec" style="margin-top:32px">
+        <div class="row"><small>Display<br>Archivo 300<br>wdth 118 · UPPER</small><div class="display" style="font-size:56px">Nkana East</div></div>
+        <div class="row"><small>Accent<br>Instrument Serif<br>Italic</small><div class="serif" style="font-size:52px;line-height:1;color:var(--copper)">Come home to</div></div>
+        <div class="row"><small>Eyebrow<br>Archivo 600 · 12px<br>tracking .2em</small><div class="eyebrow" style="margin:0">Apartments · Kitwe</div></div>
+        <div class="row"><small>Body<br>Archivo 400<br>16–18px / 1.6</small><div>Morning light across the kitchen, a short drive into town, and a quiet street to come home to.</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow">Type scale (fluid clamp)</div>
+      <table>
+        <tr><th>Token</th><th>Mobile → Desktop</th></tr>
+        <tr><td>display-xl (hero)</td><td>56 → 176px · lh .88</td></tr>
+        <tr><td>display-l (section)</td><td>40 → 112px · lh .9</td></tr>
+        <tr><td>display-m</td><td>32 → 64px</td></tr>
+        <tr><td>serif accent</td><td>0.62× of paired display</td></tr>
+        <tr><td>manifesto paragraph</td><td>24 → 48px · lh 1.15</td></tr>
+        <tr><td>body-l / body</td><td>18 / 16px · lh 1.6</td></tr>
+        <tr><td>eyebrow / label</td><td>12px · tracking .2em</td></tr>
+      </table>
+      <div class="eyebrow" style="margin-top:32px">Spacing (8pt, spacious)</div>
+      <table>
+        <tr><td>4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 · 96 · 128 · 192</td></tr>
+        <tr><td>Section padding: 96px mobile → 192px desktop<br>Gutter: 16px → 40px → 64px (1440+)<br>Container: max 1440, text measure 60ch</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--copper-lt)">04 · Signature motif: "Hex &amp; Vein"</div>
+    <h2 class="display">Taken from the property</h2>
+    <div class="grid g3" style="margin-top:32px">
+      <div class="card">
+        <svg viewBox="0 0 300 120" width="100%" aria-hidden="true">
+          <g fill="none" stroke="#C77B4A" stroke-width="1.5">
+            <path d="M0 70 C60 20,110 110,170 60 S260 30,300 55"/>
+            <path d="M0 82 C60 32,110 122,170 72 S260 42,300 67" opacity=".6"/>
+            <path d="M0 94 C60 44,110 134,170 84 S260 54,300 79" opacity=".3"/>
+          </g>
+        </svg>
+        <h3 style="margin-top:12px">Ore-vein lines</h3>
+        <p style="font-size:14px;color:var(--sand)">Three parallel copper strokes. They act as section dividers, draw on with scroll (stroke-dashoffset) in Architecture, and run behind the manifesto.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 300 120" width="100%" aria-hidden="true">
+          <defs><pattern id="hx" width="34.64" height="60" patternUnits="userSpaceOnUse"><path d="M17.32 0 L34.64 10 L34.64 30 L17.32 40 L0 30 L0 10Z M17.32 40 L17.32 60" fill="none" stroke="#D9C4A5" stroke-width="1" opacity=".5"/></pattern></defs>
+          <rect width="300" height="120" fill="url(#hx)"/>
+          <path d="M150 20 L184.6 40 L184.6 80 L150 100 L115.4 80 L115.4 40Z" fill="#A85A32" stroke="#C77B4A"/>
+          <text x="150" y="66" text-anchor="middle" fill="#F4EFE8" font-family="Archivo" font-size="18" font-weight="600" style="font-stretch:118%">VK</text>
+        </svg>
+        <h3 style="margin-top:12px">Hex tile</h3>
+        <p style="font-size:14px;color:var(--sand)">A hexagon logo mark, hex-framed amenity icons, a faint hex lattice on dark sections, and a hex "close" morph in the menu.</p>
+      </div>
+      <div class="card">
+        <div class="chamfer" style="height:120px;background:linear-gradient(135deg,#A85A32,#E9C9B6)"></div>
+        <h3 style="margin-top:12px">Chamfered frame</h3>
+        <p style="font-size:14px;color:var(--sand)">Images use a clipped hex corner instead of rounded or arched corners. Reveals animate the clip-path from inset(…) to full. The map container uses the same shape.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">05 · Your photos</div>
+    <h2 class="display"><span class="serif">Real rooms,</span> not stock</h2>
+    <p class="lead">You sent seven real property photos and a video, so I'll use them in place of Unsplash wherever they fit. Unsplash will only fill gaps: Kitwe streets, aerial or city mood, and the floor-plan placeholders. Each one gets a <code>// REPLACE</code> marker in <code>content.ts</code>. The photos will be converted to AVIF/WebP and cropped to remove the TikTok watermark where possible.</p>
+    <div class="grid g4" style="margin-top:32px">
+      <figure><img class="photo chamfer" src="../WhatsApp%20Image%202026-10-01%20at%2002.56.45%20(1).jpeg" alt=""><figcaption style="font-size:12px;margin-top:6px">Open-plan living → Hero still / Interiors</figcaption></figure>
+      <figure><img class="photo chamfer" src="../WhatsApp%20Image%202026-10-01%20at%2002.56.44%20(1).jpeg" alt=""><figcaption style="font-size:12px;margin-top:6px">Facade + hex pavers → Architecture</figcaption></figure>
+      <figure><img class="photo chamfer" src="../WhatsApp%20Image%202026-10-01%20at%2002.56.45%20(2).jpeg" alt=""><figcaption style="font-size:12px;margin-top:6px">Pool → Amenities / Gallery</figcaption></figure>
+      <figure><img class="photo chamfer" src="../WhatsApp%20Image%202026-10-01%20at%2002.56.43.jpeg" alt=""><figcaption style="font-size:12px;margin-top:6px">Kitchens / bath → Interiors / Gallery</figcaption></figure>
+    </div>
+    <p style="font-size:14px;color:var(--muted);margin-top:16px">The video (<code>WhatsApp Video … 10.41.50.mp4</code>, 450 KB) is a candidate for a muted, looping hero background behind a poster frame. Image filenames above are a best guess at which file is which; I'll match them properly during the build.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">06 · Motion tokens</div>
+    <h2 class="display">Cinematic, never jumpy</h2>
+    <table>
+      <tr><th>Use</th><th>Duration</th><th>Ease</th><th>Notes</th></tr>
+      <tr><td>Line/word mask reveal</td><td>1.1s · stagger .08</td><td>expo.out</td><td>SplitType lines wrapped in overflow-hidden spans</td></tr>
+      <tr><td>Image clip reveal</td><td>1.4s</td><td>power4.inOut</td><td>inset(18% 18% round 0) → inset(0) + inner scale 1.25 → 1</td></tr>
+      <tr><td>Parallax</td><td>scrub</td><td>none</td><td>yPercent ±12, transform only</td></tr>
+      <tr><td>Manifesto words</td><td>scrub</td><td>none</td><td>opacity .15 → 1 and colour ink → copper on the accent words</td></tr>
+      <tr><td>Menu curtain</td><td>0.9s in / 0.6s out</td><td>expo.inOut</td><td>clip-path polygon from the header edge; exit is reversed and faster</td></tr>
+      <tr><td>Loader</td><td>≤ 1.6s total</td><td>power3.inOut</td><td>Hex logo stroke draws with real asset progress; curtain lifts into the hero; skipped on repeat visits in the same session</td></tr>
+      <tr><td>Magnetic button</td><td>0.4s</td><td>elastic.out(1,.4)</td><td>Pointer devices only; fill wipes from the cursor side</td></tr>
+      <tr><td>Marquee</td><td>continuous</td><td>linear</td><td>Base speed × (1 + scroll velocity); direction flips with scroll</td></tr>
+    </table>
+    <p class="lead" style="margin-top:16px">With <code>prefers-reduced-motion</code>: no Lenis, no pinning, no parallax, no loader. Text and images simply fade in at 200ms.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">07 · Wireframe</div>
+    <h2 class="display">Section by section</h2>
+    <div class="wf">
+      <div class="s"><div class="n">00</div><h3>Global chrome</h3><div class="box">Fixed header: hex logo · "Menu" · 057 060 9865 (tel:) · <b>Book a call</b> (tel: on touch, form modal on desktop). Header hides when you scroll down and returns when you scroll up. A floating copper pill, <b>"Choose an apartment"</b>, sits bottom-right. A copper-ring cursor grows over links and images (pointer devices only). The full-screen menu opens as a malachite curtain with large staggered links, hover-swapped serif italics, phone and address. Esc closes it and focus is trapped while open. A grain overlay is fixed across the site.</div></div>
+      <div class="s"><div class="n">01</div><h3>Hero</h3><div class="box">Full-bleed video/still with a slow 1.15 → 1 scale. The headline reveals line by line: <i class="serif" style="font-size:18px">A home that</i> / SHAPES HOW / YOU LIVE. Tagline "New apartments in Nkana East, Kitwe". A drawn-vein scroll indicator sits bottom-centre.<div class="mini">[ ——— video, malachite 35% overlay ——— ] headline bottom-left · tagline bottom-right</div></div></div>
+      <div class="s"><div class="n">02</div><h3>Manifesto</h3><div class="box"><i class="serif" style="font-size:18px">Your own rules</i> OF MODERN LIFE. A big paragraph describes a day at VK: sunrise coffee at the kitchen island, the short drive into town, an afternoon by the pool, DStv and dinner with friends. Words colour in as you scroll. Vein lines run behind it.</div></div>
+      <div class="s"><div class="n">03</div><h3>Location</h3><div class="box"><i class="serif" style="font-size:18px">In the heart of</i> NKANA EAST. Pinned on desktop: the text column stays fixed while three chamfered images parallax past at different speeds. Includes distance chips ("≈ 5 min to town centre", to be confirmed) and a <b>Get directions</b> magnetic button. On mobile it's stacked with no pin.</div></div>
+      <div class="s"><div class="n">04</div><h3>Marquee</h3><div class="box">Two rows of oversized outlined/filled type moving in opposite directions, separated by hex bullets: Mukuba Mall · ECL Mall · Copperbelt University · Kitwe Teaching Hospital · Nkana Golf Club · Freedom Park… Speed reacts to scroll velocity.</div></div>
+      <div class="s"><div class="n">05</div><h3>Your own territory</h3><div class="box">Amenity cards that scroll horizontally on desktop and become a 2-col grid on mobile. Each card has a hex icon, a title, a line of copy, and an image that zooms on hover. From your photos: <b>swimming pool, secure parking, 24/7 security + electric fence, backup power, water supply, garden, DStv, Wi-Fi, air conditioning</b>.</div></div>
+      <div class="s"><div class="n">06</div><h3>Interiors</h3><div class="box"><i class="serif" style="font-size:18px">Stylish,</i> FOR REAL. Alternating split rows of image and text: kitchens (gloss cabinets, quartz tops), lighting (cove LEDs, pendants, backlit mirrors), bathrooms (marble-look porcelain, glass showers). Images reveal from inset clip-path to full, with inner parallax.</div></div>
+      <div class="s"><div class="n">07</div><h3>Architecture</h3><div class="box">A huge headline with vein lines drawn across it as you scroll (SVG stroke animation). Facade photo plus building description: single-storey modern blocks, grey render, hex-paved courtyard, landscaped beds.</div></div>
+      <div class="s"><div class="n">08</div><h3>Apartment types</h3><div class="box">Tabs → crossfading panel with floor plan (placeholder SVG), size m², bedrooms/baths, <b>from ZMW —</b>, and an <b>Enquire</b> button that preselects the unit in the contact form. Becomes a swipeable slider on mobile.</div></div>
+      <div class="s"><div class="n">09</div><h3>Gallery</h3><div class="box">Pinned horizontal scroll on desktop with a counter (03 / 12) and a progress vein line. On mobile it becomes an Embla swipe carousel with arrows (non-drag alternative). Clicking opens a lightbox.</div></div>
+      <div class="s"><div class="n">10</div><h3>How to rent / buy</h3><div class="box">Three large numbered steps: <b>View → Apply → Move in</b>. Each has a short description, and a vein line draws between them. Payment options are shown as a small list below.</div></div>
+      <div class="s"><div class="n">11</div><h3>Contact</h3><div class="box"><i class="serif" style="font-size:18px">Come home to</i> NKANA EAST. Left: the form (name, phone, preferred unit, message) with labels, validation on blur, and a success state, sent via WhatsApp or email (your choice). Right: a huge tap-to-call number, the address, and a chamfered map embed (lazy-loaded, grayscale until hover) with an <b>Open in Google Maps</b> button.</div></div>
+      <div class="s"><div class="n">12</div><h3>Footer</h3><div class="box">Malachite background with a hex lattice. Contains links, phone, address, Get directions, socials (TikTok @vk.apartments), and an edge-to-edge "VK APARTMENTS" wordmark that rises on scroll. © VK Apartments.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--copper-lt)">08 · Facts I found + open questions</div>
+    <h2 class="display">Need your input</h2>
+    <p class="lead" style="margin-bottom:24px">The map short link resolves to <b>"vk apartments nkana east (1 and 3 bedrooms), Kitwe"</b>, Plus Code <b>57J4+V9G</b> ≈ <b>-12.81781, 28.25595</b>. I'll embed those exact coordinates.</p>
+    <ol class="q">
+      <li><b>Palette:</b> A (recommended), B or C?</li>
+      <li><b>Unit types:</b> the Maps listing says <b>1 and 3 bedrooms</b>. Should the tabs show only 1-bed and 3-bed, or Studio/1/2/3 as in your brief? For each type, what are the size (m²) and the price-from in ZMW?</li>
+      <li><b>Rent, buy or short-stay?</b> The photos (pool, DStv, styled tables) suggest furnished rentals or short stays. This decides "How to rent" vs "How to buy" and whether prices are per night, per month or a sale price.</li>
+      <li><b>Payment options:</b> e.g. mobile money (Airtel / MTN), bank transfer, cash, deposit amount?</li>
+      <li><b>Enquiry form:</b> should it send to WhatsApp on 057 060 9865 (no backend needed, my suggestion), or to an email address?</li>
+      <li><b>Nearby places:</b> I'll use Mukuba Mall, ECL Mall, Copperbelt University, Kitwe Teaching Hospital, Nkana Golf Club and Freedom Park. Please confirm or swap in places you'd rather highlight.</li>
+      <li><b>Socials:</b> TikTok @vk.apartments (seen in a photo). Any Facebook, Instagram or WhatsApp links?</li>
+    </ol>
+  </div>
+</section>
+
+</body>
+</html>

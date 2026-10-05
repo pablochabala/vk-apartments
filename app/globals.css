@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+/* ───────── Design tokens · Palette A "Copper & Malachite" ───────── */
+@theme {
+  --color-limestone: #f4efe8;
+  --color-limestone-2: #ebe3d8;
+  --color-malachite: #17302a;
+  --color-malachite-2: #1f3d35;
+  --color-copper: #a85a32;
+  --color-copper-lt: #c77b4a;
+  --color-sand: #d9c4a5;
+  --color-blush: #e9c9b6;
+  --color-ink: #1b1b19;
+  --color-muted: #5e5a52;
+
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+:root {
+  --gutter: 16px;
+  --header-h: 72px;
+  color-scheme: light;
+}
+@media (min-width: 768px) {
+  :root { --gutter: 40px; --header-h: 88px; }
+}
+@media (min-width: 1440px) {
+  :root { --gutter: 64px; }
+}
+
+html { -webkit-text-size-adjust: 100%; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  background: var(--color-limestone);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection { background: var(--color-copper); color: var(--color-limestone); }
+
+:focus-visible {
+  outline: 2px solid var(--color-copper-lt);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ───────── Typography utilities ───────── */
+@utility display {
+  font-family: var(--font-sans);
+  font-stretch: 118%;
+  font-weight: 300;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.015em;
+}
+@utility serif-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1;
+}
+@utility eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+@utility text-display-xl { font-size: clamp(3.25rem, 11vw, 11rem); }
+@utility text-display-l { font-size: clamp(2.5rem, 8vw, 7rem); }
+@utility text-display-m { font-size: clamp(2rem, 4.5vw, 4rem); }
+@utility gutter { padding-inline: var(--gutter); }
+
+/* ───────── Motif: chamfered (hex-cut) frame ───────── */
+@utility chamfer {
+  clip-path: polygon(
+    var(--cut, 28px) 0, 100% 0, 100% calc(100% - var(--cut, 28px)),
+    calc(100% - var(--cut, 28px)) 100%, 0 100%, 0 var(--cut, 28px)
+  );
+}
+
+/* Masked line wrapper used by RevealText */
+.line-mask { display: block; overflow: clip; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+
+
+/* Grain overlay */
+.grain {
+  position: fixed; inset: -50%;
+  width: 200%; height: 200%;
+  pointer-events: none; z-index: 90; opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 8s steps(10) infinite;
+}
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  30% { transform: translate(3%, -15%); }
+  50% { transform: translate(12%, 9%); }
+  70% { transform: translate(9%, 4%); }
+  90% { transform: translate(-1%, 7%); }
+}
+
+/* Hex lattice background for dark sections */
+.hex-lattice {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='90'%3E%3Cpath d='M26 0 52 15v30L26 60 0 45V15zM26 60v30' fill='none' stroke='%23D9C4A5' stroke-opacity='.08'/%3E%3C/svg%3E");
+}
+
+/* Marquee outline text */
+.text-outline { color: transparent; -webkit-text-stroke: 1.2px var(--stroke, var(--color-sand)); }
+.text-outline-copper { color: transparent; -webkit-text-stroke: 1px var(--color-copper); }
+
+@media (prefers-reduced-motion: reduce) {
+  .grain { animation: none; }
+  *, *::before, *::after { scroll-behavior: auto !important; }
+}
+
+/* Custom cursor hidden on touch */
+@media (hover: none), (pointer: coarse) {
+  .cursor { display: none !important; }
+}
+
+@keyframes scrollcue {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+
+/* Repeat visit / reduced motion: never flash the intro loader */
+html[data-intro="skip"] .loader { display: none; }
