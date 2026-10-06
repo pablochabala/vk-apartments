@@ -1,0 +1,260 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   VK Apartments design tokens
+   Copper (paver terracotta) · Slate (facade charcoal) · Sand · Limestone
+--------------------------------------------------------------------------- */
+@theme inline {
+  --color-limestone: #f4efe6;
+  --color-paper: #faf7f1;
+  --color-ink: #1e1b17;
+  --color-ink-soft: #4a443d;
+  --color-copper: #b4643c;
+  --color-copper-deep: #9a5230;
+  --color-copper-light: #d98a62;
+  --color-slate: #24282b;
+  --color-slate-soft: #33383c;
+  --color-sand: #e3cfae;
+  --color-line: #d8cfc0;
+
+  --font-display: var(--font-archivo), "Arial Narrow", sans-serif;
+  --font-serif: var(--font-instrument), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-quart: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+:root {
+  --gutter: clamp(16px, 3vw, 40px);
+  --section-y: clamp(96px, 14vw, 200px);
+  --header-h: 76px;
+  color-scheme: light;
+}
+
+html {
+  background: var(--color-limestone);
+  color: var(--color-ink);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-limestone);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+::selection {
+  background: var(--color-copper);
+  color: var(--color-paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-copper);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------- Typography helpers ---------- */
+.display {
+  font-family: var(--font-display);
+  font-stretch: 72%;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 0.86;
+  letter-spacing: -0.005em;
+}
+.serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.container-x {
+  width: 100%;
+  max-width: 1600px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Line masks for text reveals */
+.mask-line {
+  display: block;
+  overflow: clip;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+.mask-line > span {
+  display: block;
+  will-change: transform;
+}
+
+/* Hexagon clip (pointy-top) — the VK signature shape */
+.hex-clip {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+/* Tall "cell" — stretched hexagon used for image masks */
+.cell-clip {
+  clip-path: polygon(50% 0%, 100% 12%, 100% 100%, 0% 100%, 0% 12%);
+}
+
+/* ---------- Grain overlay ---------- */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: -50%;
+  z-index: 90;
+  width: 200%;
+  height: 200%;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 8s steps(10) infinite;
+}
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  30% { transform: translate(3%, -15%); }
+  50% { transform: translate(12%, 9%); }
+  70% { transform: translate(9%, 4%); }
+  90% { transform: translate(-1%, 7%); }
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: 48px;
+  padding: 0.85em 1.6em;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.5s var(--ease-expo), border-color 0.5s var(--ease-expo);
+  white-space: nowrap;
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  transform: translateY(101%);
+  transition: transform 0.6s var(--ease-expo);
+}
+.btn:hover::before,
+.btn:focus-visible::before {
+  transform: translateY(0);
+}
+.btn-copper { background: var(--color-copper-deep); color: var(--color-paper); }
+.btn-copper::before { background: var(--color-ink); }
+.btn-ink { background: var(--color-ink); color: var(--color-paper); }
+.btn-ink::before { background: var(--color-copper-deep); }
+.btn-light { background: var(--color-paper); color: var(--color-ink); }
+.btn-light::before { background: var(--color-copper); }
+.btn-light:hover, .btn-light:focus-visible { color: var(--color-paper); }
+.btn-outline { border: 1px solid currentColor; }
+.btn-outline::before { background: var(--color-copper-deep); }
+.btn-outline:hover, .btn-outline:focus-visible { color: var(--color-paper); border-color: var(--color-copper-deep); }
+
+/* Animated underline link */
+.link-u {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+  transition: background-size 0.6s var(--ease-expo);
+  padding-bottom: 2px;
+}
+.link-u:hover,
+.link-u:focus-visible {
+  background-size: 100% 1px;
+  background-position: 0% 100%;
+}
+
+/* Form fields */
+.field {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+  padding: 0.9rem 0 0.7rem;
+  font-size: 1.0625rem;
+  color: inherit;
+  border-radius: 0;
+  transition: border-color 0.3s;
+}
+.field:focus {
+  outline: none;
+  border-bottom-color: var(--color-copper-light);
+}
+.field::placeholder { color: color-mix(in srgb, currentColor 45%, transparent); }
+.field[aria-invalid="true"] { border-bottom-color: #e07a5f; }
+select.field option { color: var(--color-ink); }
+
+/* Map: grayscale until hover */
+.map-frame iframe {
+  filter: grayscale(1) contrast(1.05);
+  transition: filter 0.8s var(--ease-expo);
+}
+.map-frame:hover iframe,
+.map-frame:focus-within iframe {
+  filter: none;
+}
+
+/* Scroll indicator */
+@keyframes scroll-line {
+  0% { transform: scaleY(0); transform-origin: top; }
+  45% { transform: scaleY(1); transform-origin: top; }
+  55% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+.scroll-line { animation: scroll-line 2.2s var(--ease-quart) infinite; }
+
+/* Hide scrollbar for horizontal tracks */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .grain { animation: none; }
+}
