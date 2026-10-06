@@ -7,44 +7,44 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 import { ParallaxImage } from "@/components/ui/ParallaxImage";
 import { RevealText } from "@/components/ui/RevealText";
 
-/* Honeycomb of pointy-top hexagons — the courtyard pavers, abstracted. */
-const R = 40; // hex radius
-const W = Math.sqrt(3) * R;
-const COLS = 9;
-const ROWS = 4;
+/* An arcade of doorway arches — the VK motif, drawn as a colonnade. */
+const AW = 64; // arch width
+const AR = AW / 2;
+const POST = 70; // straight sides below the curve
+const GAP = 14;
+const COLS = 7;
+const ROWS = 2;
 const cells: { d: string; fill: boolean; key: string }[] = [];
 for (let r = 0; r < ROWS; r++) {
   for (let c = 0; c < COLS; c++) {
-    const cx = c * W + (r % 2 ? W / 2 : 0) + W / 2;
-    const cy = r * R * 1.5 + R;
-    const pts = Array.from({ length: 6 }, (_, k) => {
-      const a = (Math.PI / 180) * (60 * k - 90);
-      return `${(cx + R * Math.cos(a)).toFixed(1)},${(cy + R * Math.sin(a)).toFixed(1)}`;
-    });
-    // A scattered set of "terracotta pavers", like the courtyard.
-    const fill = (r * 7 + c * 3) % 5 === 0;
-    cells.push({ d: `M${pts.join("L")}Z`, fill, key: `${r}-${c}` });
+    const x0 = c * (AW + GAP) + (r % 2 ? (AW + GAP) / 2 : 0);
+    const x1 = x0 + AW;
+    const top = r * (AR + POST + GAP);
+    const base = top + AR + POST;
+    // A scattered few filled in copper, like lit doorways.
+    const fill = (r * 5 + c * 3) % 4 === 0;
+    cells.push({ d: `M${x0} ${base} L${x0} ${top + AR} A${AR} ${AR} 0 0 1 ${x1} ${top + AR} L${x1} ${base} Z`, fill, key: `${r}-${c}` });
   }
 }
-const VB_W = COLS * W + W / 2;
-const VB_H = ROWS * R * 1.5 + R / 2;
+const VB_W = COLS * (AW + GAP) + (AW + GAP) / 2;
+const VB_H = ROWS * (AR + POST + GAP);
 
 export function Architecture() {
   const root = useRef<HTMLElement>(null);
 
   useGSAP(
     () => {
-      const strokes = gsap.utils.toArray<SVGPathElement>(".js-hex-stroke", root.current);
-      const fills = gsap.utils.toArray<SVGPathElement>(".js-hex-fill", root.current);
+      const strokes = gsap.utils.toArray<SVGPathElement>(".js-arch-stroke", root.current);
+      const fills = gsap.utils.toArray<SVGPathElement>(".js-arch-fill", root.current);
       if (prefersReducedMotion()) {
         gsap.set(strokes, { strokeDashoffset: 0 });
         gsap.set(fills, { opacity: 0.7 });
         return;
       }
       gsap
-        .timeline({ scrollTrigger: { trigger: ".js-honeycomb", start: "top 85%", end: "bottom 35%", scrub: 0.8 } })
+        .timeline({ scrollTrigger: { trigger: ".js-arcade", start: "top 85%", end: "bottom 35%", scrub: 0.8 } })
         .fromTo(strokes, { strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: "none", stagger: { each: 0.04, from: "random" } })
-        .fromTo(fills, { opacity: 0, scale: 0.6, transformOrigin: "50% 50%" }, { opacity: 0.7, scale: 1, ease: "power2.out", stagger: 0.05 }, ">-0.4");
+        .fromTo(fills, { opacity: 0, scaleY: 0, transformOrigin: "50% 100%" }, { opacity: 0.7, scaleY: 1, ease: "power2.out", stagger: 0.05 }, ">-0.4");
     },
     { scope: root },
   );
@@ -55,15 +55,15 @@ export function Architecture() {
         <div className="relative">
           <svg
             viewBox={`0 0 ${VB_W} ${VB_H}`}
-            className="js-honeycomb pointer-events-none mb-8 w-full md:absolute md:-top-[6vw] md:right-0 md:mb-0 md:w-[52%]"
+            className="js-arcade pointer-events-none mb-8 w-full md:absolute md:-top-[6vw] md:right-0 md:mb-0 md:w-[52%]"
             fill="none"
             aria-hidden="true"
           >
             {cells.map((cell) => (
               <g key={cell.key}>
-                {cell.fill && <path className="js-hex-fill" d={cell.d} fill="var(--color-copper)" opacity={0.7} />}
+                {cell.fill && <path className="js-arch-fill" d={cell.d} fill="var(--color-copper)" opacity={0.7} />}
                 <path
-                  className="js-hex-stroke"
+                  className="js-arch-stroke"
                   d={cell.d}
                   pathLength={1}
                   strokeDasharray="1"
@@ -83,7 +83,7 @@ export function Architecture() {
             image={architecture.image}
             reveal
             speed={14}
-            className="cell-clip aspect-[4/5] md:col-span-5"
+            className="arch-mask aspect-[4/5] md:col-span-5"
             sizes="(min-width:768px) 40vw, 100vw"
             cursorLabel="Facade"
           />

@@ -39,7 +39,7 @@ export function Location() {
 
         <div className="relative lg:col-span-6 lg:col-start-7">
           <div className="grid grid-cols-6 gap-4 md:gap-6">
-            <ParallaxImage image={a} reveal className="cell-clip col-span-6 aspect-[4/5] sm:col-span-4" speed={16} sizes="(min-width:1024px) 34vw, 70vw" cursorLabel="Home" />
+            <ParallaxImage image={a} reveal className="arch-mask col-span-6 aspect-[4/5] sm:col-span-4" speed={16} sizes="(min-width:1024px) 34vw, 70vw" cursorLabel="Home" />
             <ParallaxImage image={b} reveal className="col-span-4 col-start-3 aspect-[4/3] rounded-[24px] sm:-mt-24" speed={10} sizes="(min-width:1024px) 28vw, 60vw" cursorLabel="Pool" />
             <ParallaxImage image={c} reveal className="col-span-5 aspect-square rounded-t-[999px] sm:col-span-3 sm:-mt-10" speed={20} sizes="(min-width:1024px) 20vw, 70vw" cursorLabel="Lounge" />
           </div>

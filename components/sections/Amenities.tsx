@@ -6,7 +6,7 @@ import { gsap, useGSAP, MQ } from "@/lib/gsap";
 import { amenities } from "@/content";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Icon } from "@/components/ui/Icon";
-import { HexFill } from "@/components/ui/Hex";
+import { ArchFill } from "@/components/ui/Arch";
 
 /** Desktop: section pins and the cards slide horizontally. Mobile: native swipe row with snap. */
 export function Amenities() {
@@ -90,8 +90,8 @@ export function Amenities() {
                     className="object-cover transition-transform duration-[1.4s] ease-[var(--ease-expo)] group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate/60 via-transparent to-transparent" />
-                  <span className="absolute bottom-4 left-4 grid h-14 w-14 place-items-center text-paper">
-                    <HexFill className="absolute inset-0 h-full w-full text-copper-deep transition-transform duration-700 group-hover:rotate-90" />
+                  <span className="absolute bottom-4 left-4 grid h-16 w-[3.1rem] place-items-center pt-3 text-paper">
+                    <ArchFill className="absolute inset-0 h-full w-full text-copper-deep transition-transform duration-700 group-hover:scale-110 origin-bottom" />
                     <Icon name={item.icon} className="relative h-6 w-6" />
                   </span>
                   <span className="display absolute right-4 top-6 text-sm text-paper/80">{String(i + 1).padStart(2, "0")}</span>

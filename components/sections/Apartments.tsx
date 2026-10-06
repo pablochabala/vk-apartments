@@ -7,7 +7,7 @@ import { apartments } from "@/content";
 import { useSite } from "@/components/providers/SiteProvider";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { HexFill } from "@/components/ui/Hex";
+import { ArchFill } from "@/components/ui/Arch";
 import { whatsappLink } from "@/lib/whatsapp";
 
 const fmt = (n: number) => `${apartments.currency}${n.toLocaleString("en-ZM")}`;
@@ -120,7 +120,7 @@ export function Apartments() {
               <ul className="mt-8 space-y-3">
                 {unit.features.map((f) => (
                   <li key={f} className="js-apt-detail flex items-center gap-3 text-paper/85">
-                    <HexFill className="h-2.5 w-2.5 shrink-0 text-copper-light" />
+                    <ArchFill className="h-3 w-2.5 shrink-0 text-copper-light" />
                     {f}
                   </li>
                 ))}

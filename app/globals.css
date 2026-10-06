@@ -114,13 +114,13 @@ html.lenis body {
   will-change: transform;
 }
 
-/* Hexagon clip (pointy-top) — the VK signature shape */
-.hex-clip {
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+/* Arch — the VK signature shape. Border-radius (not clip-path) so it composes with clip-path reveals. */
+.arch-mask {
+  border-top-left-radius: 999px;
+  border-top-right-radius: 999px;
 }
-/* Tall "cell" — stretched hexagon used for image masks */
-.cell-clip {
-  clip-path: polygon(50% 0%, 100% 12%, 100% 100%, 0% 100%, 0% 12%);
+.arch-dot {
+  border-radius: 999px 999px 1px 1px;
 }
 
 /* ---------- Grain overlay ---------- */
@@ -258,3 +258,28 @@ select.field option { color: var(--color-ink); }
   }
   .grain { animation: none; }
 }
+
+/* Walk-through scrubber */
+.scrub-range {
+  appearance: none;
+  height: 24px;
+  background: transparent;
+}
+.scrub-range::-webkit-slider-runnable-track { height: 1px; background: color-mix(in srgb, currentColor 30%, transparent); }
+.scrub-range::-moz-range-track { height: 1px; background: color-mix(in srgb, currentColor 30%, transparent); }
+.scrub-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 18px;
+  margin-top: -9px;
+  border-radius: 999px 999px 2px 2px;
+  background: var(--color-copper-light);
+}
+.scrub-range::-moz-range-thumb {
+  width: 14px;
+  height: 18px;
+  border: 0;
+  border-radius: 999px 999px 2px 2px;
+  background: var(--color-copper-light);
+}
+.scrub-range:disabled { opacity: 0.4; cursor: default; }

@@ -11,6 +11,7 @@ import { Location } from "@/components/sections/Location";
 import { NearbyMarquee } from "@/components/sections/NearbyMarquee";
 import { Amenities } from "@/components/sections/Amenities";
 import { Interiors } from "@/components/sections/Interiors";
+import { Walkthrough } from "@/components/sections/Walkthrough";
 import { Architecture } from "@/components/sections/Architecture";
 import { Apartments } from "@/components/sections/Apartments";
 import { Gallery } from "@/components/sections/Gallery";
@@ -33,6 +34,7 @@ export default function Home() {
         <NearbyMarquee />
         <Amenities />
         <Interiors />
+        <Walkthrough />
         <Architecture />
         <Apartments />
         <Gallery />

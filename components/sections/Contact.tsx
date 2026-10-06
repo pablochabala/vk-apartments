@@ -170,6 +170,11 @@ export function Contact() {
               <a href={site.phone.tel} className="display link-u mt-3 inline-block text-[clamp(3rem,6.5vw,6rem)] leading-[0.9]">
                 {site.phone.display}
               </a>
+              {site.email && (
+                <a href={`mailto:${site.email}`} className="link-u mt-4 block w-fit text-lg text-paper/80">
+                  {site.email}
+                </a>
+              )}
             </div>
             <div className="flex flex-col gap-1">
               <p className="eyebrow text-copper-light">Address</p>

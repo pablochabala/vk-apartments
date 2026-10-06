@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import { useSite } from "@/components/providers/SiteProvider";
-import { HexOutline } from "@/components/ui/Hex";
+import { ArchNest } from "@/components/ui/Arch";
 import { Icon } from "@/components/ui/Icon";
 import { nav, site } from "@/content";
 import { BookCallButton } from "./BookCallButton";
@@ -24,7 +24,7 @@ export function MenuOverlay() {
         .fromTo(".js-curtain", { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: reduced ? 0.01 : 1 }, reduced ? 0 : 0.12)
         .from(".js-link", { yPercent: 115, duration: reduced ? 0.01 : 1.1, ease: "expo.out", stagger: 0.06 }, reduced ? 0 : 0.55)
         .from(".js-fade", { autoAlpha: 0, y: 20, duration: reduced ? 0.01 : 0.8, ease: "power3.out", stagger: 0.08 }, reduced ? 0 : 0.8)
-        .from(".js-hexdeco", { rotate: -30, scale: 0.6, autoAlpha: 0, duration: reduced ? 0.01 : 1.6, ease: "expo.out" }, reduced ? 0 : 0.5);
+        .from(".js-archdeco", { yPercent: 25, scale: 0.8, autoAlpha: 0, transformOrigin: "50% 100%", duration: reduced ? 0.01 : 1.6, ease: "expo.out" }, reduced ? 0 : 0.5);
     },
     { scope: root },
   );
@@ -91,7 +91,7 @@ export function MenuOverlay() {
     >
       <div className="js-curtain-copper absolute inset-0 bg-copper" />
       <div className="js-curtain absolute inset-0 overflow-hidden bg-slate text-paper">
-        <HexOutline className="js-hexdeco pointer-events-none absolute -right-[20vmin] -bottom-[25vmin] h-[90vmin] w-[90vmin] text-paper/[0.06]" strokeWidth={1} />
+        <ArchNest className="js-archdeco pointer-events-none absolute -right-[14vmin] -bottom-[6vmin] h-[110vmin] w-[85vmin] text-paper/[0.07]" />
 
         <div className="container-x flex h-full flex-col justify-between gap-10 overflow-y-auto pb-10 pt-[calc(var(--header-h)+4vh)] lg:flex-row lg:items-end lg:pb-16">
           <nav aria-label="Main">

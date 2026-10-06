@@ -1,7 +1,7 @@
 # VK Apartments — website
 
 Marketing site for **VK Apartments, Nkana East, Kitwe, Zambia**: an editorial, scroll-driven one-pager with a
-copper/slate/sand palette and a hexagon motif taken from the courtyard pavers.
+copper/slate/sand palette and an arch motif (doorways, image masks, dividers, loader and logo).
 
 **Stack:** Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · GSAP + ScrollTrigger + SplitText · Lenis · Embla Carousel · `next/image`
 
@@ -58,6 +58,12 @@ To swap a photo:
 
 `kitchen.jpg` and `lounge.jpg` are currently crops of `living.jpg` and `dining.jpg`. Replace them with dedicated photos when you have them.
 
+**Walk-through video ("Step inside"):** the living-room clip follows the visitor's cursor on desktop
+(left edge = start, right edge = end) and their scroll on phones; a slider under it works for keyboard users.
+To replace it, re-encode your clip with a keyframe on every frame so it can be scrubbed smoothly
+(the exact `ffmpeg` commands are next to `media.livingPan` in `content.ts`), save it as
+`public/media/living-pan.mp4` + `.webm`, and export a still as `living-pan.jpg` for the poster.
+
 **Optional hero video:** add a short, muted, compressed loop at `public/media/hero.mp4`, then set `media.heroVideo` to `"/media/hero.mp4"`. The living-room photo becomes its poster.
 
 ### Enquiry form
@@ -78,9 +84,9 @@ components/
   providers/SiteProvider.tsx   Lenis smooth scroll (synced to GSAP), intro/menu state, scrollTo
   layout/   Loader, Header, MenuOverlay, FloatingCTA, Cursor, Footer, BookCallButton
   sections/ Hero, Manifesto, Location, NearbyMarquee, Amenities, Interiors,
-            Architecture, Apartments, Gallery, HowToBook, Contact
+            Walkthrough, Architecture, Apartments, Gallery, HowToBook, Contact
   ui/       RevealText, SectionTitle, ParallaxImage, Marquee, MagneticButton,
-            MapEmbed, Hex (logo + motif), Icon
+            MapEmbed, ScrubVideo, Arch (logo + motif), Icon
 lib/
   gsap.ts       plugin registration + reduced-motion / pointer helpers
   whatsapp.ts   WhatsApp + map embed URL helpers

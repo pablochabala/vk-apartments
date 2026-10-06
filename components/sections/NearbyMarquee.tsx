@@ -1,6 +1,6 @@
 import { nearby } from "@/content";
 import { Marquee } from "@/components/ui/Marquee";
-import { HexFill, HexOutline } from "@/components/ui/Hex";
+import { ArchFill, ArchOutline } from "@/components/ui/Arch";
 
 export function NearbyMarquee() {
   return (
@@ -17,7 +17,7 @@ export function NearbyMarquee() {
           duration={45}
           className="text-[clamp(2.8rem,8vw,7.5rem)] leading-none"
           itemClassNames={["display", "serif text-copper-deep"]}
-          separator={<HexFill className="mx-[0.3em] h-[0.28em] w-[0.28em] text-copper" />}
+          separator={<ArchFill className="mx-[0.3em] h-[0.34em] w-[0.26em] text-copper" />}
         />
         <Marquee
           items={nearby.rowB}
@@ -25,7 +25,7 @@ export function NearbyMarquee() {
           duration={50}
           className="text-[clamp(2.8rem,8vw,7.5rem)] leading-none text-slate"
           itemClassNames={["serif", "display"]}
-          separator={<HexOutline className="mx-[0.3em] h-[0.32em] w-[0.32em] text-copper" strokeWidth={2} />}
+          separator={<ArchOutline className="mx-[0.3em] h-[0.4em] w-[0.31em] text-copper" strokeWidth={2} />}
         />
       </div>
     </section>

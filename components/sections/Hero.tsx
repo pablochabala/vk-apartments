@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { gsap, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import { useSite } from "@/components/providers/SiteProvider";
 import { hero, media, site } from "@/content";
-import { HexOutline } from "@/components/ui/Hex";
+import { ArchNest } from "@/components/ui/Arch";
 
 export function Hero() {
   const root = useRef<HTMLElement>(null);
@@ -19,7 +19,8 @@ export function Hero() {
       gsap.set(".js-hero-line", { yPercent: 115, rotate: 2.5 });
       gsap.set(".js-hero-fade", { autoAlpha: 0, y: 24 });
       gsap.set(".js-hero-img", { scale: 1.3 });
-      gsap.set(".js-hero-hex", { rotate: -40, scale: 0.7, autoAlpha: 0 });
+      gsap.set(".js-hero-arch", { yPercent: 18, scale: 0.85, autoAlpha: 0, transformOrigin: "50% 100%" });
+      gsap.set(".js-hero-arch .js-arch-ring", { strokeDashoffset: 1 });
 
       const st = { trigger: root.current, start: "top top", end: "bottom top", scrub: true };
       gsap.to(".js-hero-media", { yPercent: 18, ease: "none", scrollTrigger: st });
@@ -37,7 +38,8 @@ export function Hero() {
         .to(".js-hero-img", { scale: 1, duration: 2.8, ease: "expo.out" }, 0)
         .to(".js-hero-line", { yPercent: 0, rotate: 0, duration: 1.5, ease: "expo.out", stagger: 0.12 }, 0.2)
         .to(".js-hero-fade", { autoAlpha: 1, y: 0, duration: 1.1, ease: "power3.out", stagger: 0.1 }, 0.8)
-        .to(".js-hero-hex", { rotate: 0, scale: 1, autoAlpha: 1, duration: 2.4, ease: "expo.out" }, 0.4);
+        .to(".js-hero-arch", { yPercent: 0, scale: 1, autoAlpha: 1, duration: 2.4, ease: "expo.out" }, 0.4)
+        .to(".js-hero-arch .js-arch-ring", { strokeDashoffset: 0, duration: 2.2, ease: "power3.inOut", stagger: 0.15 }, 0.4);
     },
     { scope: root, dependencies: [introDone] },
   );
@@ -64,7 +66,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,18,16,.55)_0%,rgba(20,18,16,.15)_35%,rgba(20,18,16,.25)_60%,rgba(20,18,16,.82)_100%)]" />
       </div>
 
-      <HexOutline className="js-hero-hex pointer-events-none absolute -right-[12vmin] top-[12vh] h-[70vmin] w-[70vmin] text-paper/15" strokeWidth={1} />
+      <ArchNest className="js-hero-arch pointer-events-none absolute -right-[6vmin] top-[14vh] h-[86vmin] w-[66vmin] text-paper/15" />
 
       <div className="js-hero-copy container-x relative flex h-full flex-col justify-end pb-[clamp(28px,7vh,80px)]">
         <h1 className="display text-[clamp(3.6rem,13.5vw,15rem)]">
@@ -77,7 +79,7 @@ export function Hero() {
 
         <div className="mt-6 flex flex-col gap-6 md:mt-10 md:flex-row md:items-end md:justify-between">
           <p className="js-hero-fade flex items-center gap-3 text-base md:text-lg">
-            <span aria-hidden="true" className="inline-block h-2.5 w-2.5 hex-clip bg-copper-light" />
+            <span aria-hidden="true" className="inline-block h-3 w-2 arch-dot bg-copper-light" />
             {hero.tagline}
           </p>
           <div className="js-hero-fade hidden items-center gap-4 md:flex">

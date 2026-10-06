@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { useSite } from "@/components/providers/SiteProvider";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { HexFill } from "@/components/ui/Hex";
+import { ArchFill } from "@/components/ui/Arch";
 
 /** Persistent "Choose an apartment" pill — appears after the hero, steps aside on the apartments & contact sections. */
 export function FloatingCTA() {
@@ -32,7 +32,7 @@ export function FloatingCTA() {
   return (
     <div ref={ref} className={`fixed bottom-4 right-4 z-[60] md:bottom-8 md:right-8 ${menuOpen ? "pointer-events-none opacity-0" : ""}`}>
       <MagneticButton className="btn-ink shadow-[0_18px_40px_-12px_rgba(30,27,23,.55)]" onClick={() => scrollTo("#apartments")}>
-        <HexFill className="h-3 w-3 text-copper-light" />
+        <ArchFill className="h-3.5 w-3 text-copper-light" />
         Choose an apartment
       </MagneticButton>
     </div>

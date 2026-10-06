@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { site } from "@/content";
 import { mapsEmbedUrl } from "@/lib/whatsapp";
-import { HexOutline } from "./Hex";
+import { ArchOutline } from "./Arch";
 
 /** Lazy Google Map: the iframe is only created when the frame nears the viewport. Grayscale until hover. */
 export function MapEmbed({ className = "" }: { className?: string }) {
@@ -39,7 +39,7 @@ export function MapEmbed({ className = "" }: { className?: string }) {
         />
       ) : (
         <div className="absolute inset-0 grid place-items-center text-sand/50">
-          <HexOutline className="h-16 w-16 animate-pulse" />
+          <ArchOutline className="h-16 w-12 animate-pulse" />
         </div>
       )}
     </div>

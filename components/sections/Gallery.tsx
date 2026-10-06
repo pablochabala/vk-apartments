@@ -7,9 +7,9 @@ import { gsap, useGSAP, MQ } from "@/lib/gsap";
 import { gallery } from "@/content";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 
-/** Arch/cell masks only suit portrait photos; landscape ones get a soft corner. */
+/** Arch masks only suit portrait photos; landscape ones get a soft corner. */
 const shapeFor = (img: { w: number; h: number }, i: number) =>
-  img.h > img.w ? (i % 3 === 2 ? "cell-clip" : "rounded-t-[999px]") : i % 2 ? "rounded-[4px]" : "rounded-tl-[clamp(60px,9vw,160px)]";
+  img.h > img.w ? "arch-mask" : i % 2 ? "rounded-[4px]" : "rounded-tl-[clamp(60px,9vw,160px)]";
 const heights = ["lg:h-[64vh]", "lg:h-[50vh]", "lg:h-[70vh]", "lg:h-[56vh]", "lg:h-[66vh]", "lg:h-[52vh]", "lg:h-[62vh]"];
 
 /** Desktop: pinned horizontal scroll with counter. Mobile/tablet: Embla swipe carousel. */

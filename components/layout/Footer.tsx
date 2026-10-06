@@ -1,12 +1,12 @@
 import { nav, site, footer } from "@/content";
-import { HexDivider } from "@/components/ui/Hex";
+import { ArchDivider } from "@/components/ui/Arch";
 import { Icon } from "@/components/ui/Icon";
 
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-slate text-paper">
       <div className="container-x pt-20 md:pt-28">
-        <HexDivider count={16} className="mb-16 h-10 w-full text-paper/15 md:h-14" />
+        <ArchDivider count={16} className="mb-16 h-10 w-full text-paper/15 md:h-14" />
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <p className="serif text-4xl leading-tight text-sand md:text-5xl">A home that shapes how you live.</p>
@@ -29,6 +29,11 @@ export function Footer() {
           <div className="md:col-span-3">
             <p className="eyebrow mb-5 text-copper-light">Visit</p>
             <address className="not-italic text-paper/80">{site.address.full}</address>
+            {site.email && (
+              <a href={`mailto:${site.email}`} className="link-u mt-2 inline-block text-paper/80">
+                {site.email}
+              </a>
+            )}
             <a href={site.map.shortLink} target="_blank" rel="noopener noreferrer" className="link-u mt-3 inline-flex items-center gap-2">
               Get directions <Icon name="arrow" className="h-4 w-4" />
             </a>

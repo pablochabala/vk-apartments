@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { gsap, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import { manifesto } from "@/content";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { HexOutline } from "@/components/ui/Hex";
+import { ArchNest } from "@/components/ui/Arch";
 
 /** Splits "*word*" markers into highlighted tokens. */
 function tokens(text: string) {
@@ -26,6 +26,12 @@ export function Manifesto() {
         { opacity: 0.14 },
         { opacity: 1, ease: "none", stagger: 0.1, scrollTrigger: { trigger: ".js-para", start: "top 78%", end: "bottom 50%", scrub: 0.6 } },
       );
+      // The arches draw themselves, outermost first, over the same stretch of scroll.
+      gsap.fromTo(
+        gsap.utils.toArray<SVGPathElement>(".js-arch-ring", root.current),
+        { strokeDashoffset: 1 },
+        { strokeDashoffset: 0, ease: "none", stagger: 0.25, scrollTrigger: { trigger: root.current, start: "top 75%", end: "center 40%", scrub: 0.8 } },
+      );
     },
     { scope: root },
   );
@@ -33,7 +39,7 @@ export function Manifesto() {
   return (
     <section ref={root} id="manifesto" aria-labelledby="manifesto-title" className="relative overflow-hidden">
       <div className="container-x relative py-[var(--section-y)]">
-        <HexOutline className="pointer-events-none absolute -left-[10vmin] top-[8vh] h-[42vmin] w-[42vmin] text-copper/15" strokeWidth={1} />
+        <ArchNest className="pointer-events-none absolute -left-[8vmin] top-[8vh] h-[52vmin] w-[40vmin] text-copper/20" />
         <SectionTitle id="manifesto-title" eyebrow={manifesto.eyebrow} serif={manifesto.titleSerif} title={manifesto.title} className="mb-12 md:mb-20" />
         <p className="js-para max-w-[22ch] text-[clamp(1.75rem,4.4vw,4.6rem)] font-medium leading-[1.12] tracking-[-0.02em] md:ml-[16.66%] lg:max-w-[26ch]">
           {tokens(manifesto.paragraph).map((t, i) => (

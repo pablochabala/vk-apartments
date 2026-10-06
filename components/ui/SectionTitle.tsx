@@ -48,7 +48,7 @@ export function SectionTitle({ eyebrow, serif, title, tone = "light", align = "l
     <div ref={ref} className={`${align === "center" ? "text-center" : ""} ${className}`}>
       {eyebrow && (
         <p className={`js-eyebrow eyebrow mb-6 flex items-center gap-3 ${align === "center" ? "justify-center" : ""} ${accent}`}>
-          <span aria-hidden="true" className="inline-block h-2.5 w-2.5 hex-clip bg-current" />
+          <span aria-hidden="true" className="inline-block h-3 w-2 arch-dot bg-current" />
           {eyebrow}
         </p>
       )}

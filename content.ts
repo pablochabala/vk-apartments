@@ -18,6 +18,8 @@ export const site = {
     whatsapp: "https://wa.me/260570609865",
     e164: "+260570609865",
   },
+  // TODO: add your email (e.g. "hello@vkapartments.co.zm"). It appears in Contact, menu and footer once set.
+  email: null as string | null,
   address: {
     short: "Nkana East, Kitwe",
     full: "Nkana East, Kitwe, Zambia",
@@ -62,6 +64,19 @@ export const media = {
   lounge: { src: "/media/lounge.jpg", alt: "Lounge with grey sofa, swirl rug and breakfast bar seen from above", w: 800, h: 700 }, // REPLACE with a dedicated lounge photo (currently cropped from dining.jpg),
   // Optional: drop a short muted loop at /public/media/hero.mp4 and set this to "/media/hero.mp4".
   heroVideo: null as string | null,
+  // Walk-through clip of the living room. Encoded with a keyframe on every frame so it can be scrubbed:
+  // (-frames:v 68 trims the TikTok watermark that appears in the last frames of the original.)
+  //   ffmpeg -i in.mp4 -an -c:v libx264 -crf 30 -g 1 -pix_fmt yuv420p -movflags +faststart living-pan.mp4
+  //   ffmpeg -i in.mp4 -an -c:v libvpx-vp9 -b:v 0 -crf 50 -g 1 living-pan.webm   (fallback for browsers without H.264)
+  livingPan: {
+    sources: [
+      { src: "/media/living-pan.mp4", type: "video/mp4" },
+      { src: "/media/living-pan.webm", type: "video/webm" },
+    ],
+    poster: "/media/living-pan.jpg",
+    w: 576,
+    h: 1024,
+  },
 };
 
 export const hero = {
@@ -144,13 +159,24 @@ export const interiors = {
   ],
 };
 
+export const walkthrough = {
+  eyebrow: "Step inside",
+  titleSerif: "Move to",
+  title: "look around",
+  hintPointer: "Move your cursor across the room",
+  hintTouch: "Scroll to walk through the room",
+  text: "Open-plan living, a lit kitchen and a lounge built for long evenings. Take a walk through a VK apartment.",
+  video: media.livingPan,
+  alt: "Video walk-through of the open-plan living room, kitchen and dining area",
+};
+
 export const architecture = {
   eyebrow: "Architecture",
   titleSerif: "Calm lines,",
   title: "solid ground",
   text: [
     "Low-rise, single-storey blocks in soft grey render with charcoal window frames. Each apartment has its own front door and patio.",
-    "A courtyard of terracotta and sand hexagonal pavers ties the compound together, edged with palms and planted beds. The hexagon became our mark.",
+    "A courtyard of terracotta and sand pavers ties the compound together, edged with palms and planted beds. Our mark is the arch: the shape of a doorway, and of coming home.",
   ],
   image: media.facade,
 };

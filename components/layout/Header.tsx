@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { useSite } from "@/components/providers/SiteProvider";
-import { Logo } from "@/components/ui/Hex";
+import { Logo } from "@/components/ui/Arch";
 import { Icon } from "@/components/ui/Icon";
 import { site } from "@/content";
 import { BookCallButton } from "./BookCallButton";

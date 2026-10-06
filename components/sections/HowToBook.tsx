@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { gsap, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import { howToBook, site } from "@/content";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { HexOutline } from "@/components/ui/Hex";
+import { ArchOutline } from "@/components/ui/Arch";
 import { Icon } from "@/components/ui/Icon";
 
 export function HowToBook() {
@@ -22,7 +22,7 @@ export function HowToBook() {
         stagger: 0.15,
         scrollTrigger: { trigger: ".js-steps", start: "top 80%", once: true },
       });
-      gsap.from(".js-step-hex", { rotate: -90, scale: 0.5, duration: 1.6, ease: "expo.out", stagger: 0.15, scrollTrigger: { trigger: ".js-steps", start: "top 80%", once: true } });
+      gsap.from(".js-step-arch", { yPercent: 30, scaleY: 0.4, transformOrigin: "50% 100%", duration: 1.6, ease: "expo.out", stagger: 0.15, scrollTrigger: { trigger: ".js-steps", start: "top 80%", once: true } });
     },
     { scope: root },
   );
@@ -38,8 +38,8 @@ export function HowToBook() {
           </span>
           {howToBook.steps.map((step, i) => (
             <li key={step.title} className="js-step relative">
-              <span className="relative grid h-20 w-20 place-items-center bg-paper">
-                <HexOutline className="js-step-hex absolute inset-0 h-full w-full text-copper-deep" strokeWidth={1.5} />
+              <span className="relative grid h-20 w-[3.9rem] place-items-center bg-paper pt-4">
+                <ArchOutline className="js-step-arch absolute inset-0 h-full w-full text-copper-deep" strokeWidth={1.5} />
                 <span className="display text-3xl text-copper-deep">{i + 1}</span>
               </span>
               <h3 className="display mt-6 text-[clamp(2.2rem,3.4vw,3.2rem)]">{step.title}</h3>
@@ -56,7 +56,7 @@ export function HowToBook() {
           <ul className="space-y-4 md:col-span-5">
             {howToBook.payment.items.map((item) => (
               <li key={item} className="flex gap-3 text-ink-soft">
-                <span aria-hidden="true" className="mt-2.5 inline-block h-2 w-2 shrink-0 hex-clip bg-copper" />
+                <span aria-hidden="true" className="mt-2.5 inline-block h-2.5 w-[0.4rem] shrink-0 arch-dot bg-copper" />
                 {item}
               </li>
             ))}
