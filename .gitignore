@@ -4,3 +4,7 @@ out
 .vercel
 *.tsbuildinfo
 next-env.d.ts
+
+# python bytecode (ui-ux-pro-max skill scripts)
+__pycache__/
+*.pyc
