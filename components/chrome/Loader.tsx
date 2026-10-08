@@ -30,7 +30,12 @@ export function Loader() {
     const el = root.current!;
     const counter = el.querySelector("[data-count]")!;
     const hex = el.querySelectorAll("[data-hex]");
+    const bar = el.querySelector<HTMLElement>("[data-bar]")!;
     const progress = { v: 0 };
+    const paint = () => {
+      counter.textContent = String(Math.round(progress.v)).padStart(3, "0");
+      bar.style.transform = `scaleX(${progress.v / 100})`;
+    };
 
     // Progress follows real readiness (fonts + window load) but never takes longer than ~1.8s.
     const loaded = Promise.race([
@@ -42,15 +47,15 @@ export function Loader() {
     const tl = gsap.timeline();
     tl.to(hex, { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut", stagger: 0.12 }, 0).to(
       progress,
-      { v: 82, duration: 1, ease: "power2.out", onUpdate: () => (counter.textContent = String(Math.round(progress.v)).padStart(3, "0")) },
+      { v: 82, duration: 1, ease: "power2.out", onUpdate: paint },
       0,
     );
 
     let cancelled = false;
     loaded.then(() => {
       if (cancelled) return;
-      tl.to(progress, { v: 100, duration: 0.35, ease: "power1.out", onUpdate: () => (counter.textContent = String(Math.round(progress.v)).padStart(3, "0")) })
-        .to(el.querySelector("[data-content]"), { yPercent: -40, autoAlpha: 0, duration: 0.6, ease: "power3.in" })
+      tl.to(progress, { v: 100, duration: 0.35, ease: "power1.out", onUpdate: paint })
+        .to([el.querySelector("[data-content]"), el.querySelector("[data-track]")], { yPercent: -40, autoAlpha: 0, duration: 0.6, ease: "power3.in" })
         .add(() => setReady(true), "-=0.15")
         .to(el, { clipPath: "inset(0% 0% 100% 0%)", duration: 1.1, ease: "expo.inOut" }, "-=0.25")
         .add(() => {
@@ -90,6 +95,9 @@ export function Loader() {
             000
           </span>
         </div>
+      </div>
+      <div data-track className="absolute inset-x-[var(--gutter)] bottom-10 h-px bg-limestone/15" aria-hidden="true">
+        <div data-bar className="h-full w-full origin-left bg-copper-lt" style={{ transform: "scaleX(0)" }} />
       </div>
     </div>
   );

@@ -30,6 +30,8 @@ npm run build
 npm start
 ```
 
+> The npm scripts run Node with `--use-system-ca`, so Next.js trusts the certificates Windows trusts. This avoids "unable to verify the first certificate" errors on PCs where antivirus or a proxy inspects HTTPS. It has no effect on Vercel.
+
 > **Tip (Windows/OneDrive):** this folder is inside OneDrive, and OneDrive tries to sync the thousands of files in `node_modules`, which makes installs and builds very slow. Either pause OneDrive while you work, or move the project to a folder outside OneDrive (e.g. `C:\dev\vk-apartments`).
 
 ---
@@ -49,7 +51,8 @@ npm start
 | Nearby places marquee | `nearby.rowA`, `nearby.rowB` |
 | Amenities | `amenities.items` (icon names: pool, parking, shield, bolt, drop, leaf, wifi, tv, snow) |
 | Apartment types + **prices per night** | `apartments.types` |
-| Booking steps + payment info | `howToBook` |
+| How to rent (View → Apply → Move in) + payment info | `howToBook` |
+| Stock placeholder photos (Kitwe street, garden path, trees) | `stock`, files in `public/media/stock/` |
 | Gallery photos | `gallery.images` |
 
 Anything marked `// REPLACE` is a placeholder or an unconfirmed fact. Check those before launch:
@@ -61,7 +64,9 @@ Anything marked `// REPLACE` is a placeholder or an unconfirmed fact. Check thos
 
 ### Photos
 
-Real photos are in `public/media/`. To add or replace one:
+Real photos are in `public/media/`. Three free Unsplash placeholders live in `public/media/stock/` and are used in the Location section and the Garden card. Swap them for your own photos of Nkana East when you have them.
+
+To add or replace a photo:
 
 1. Drop the file in `public/media/` (JPG/PNG, at least 1600px wide is ideal).
 2. Add an entry to `media` in `content.ts` with `src`, a descriptive `alt`, and the image's `w`/`h`.

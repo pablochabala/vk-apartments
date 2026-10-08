@@ -63,6 +63,18 @@ export const media = {
   heroVideo: "/media/hero.mp4",
 };
 
+/**
+ * Stock placeholders: free Unsplash photos saved in /public/media/stock.
+ * REPLACE with your own photos of Nkana East.
+ * Sources (images.unsplash.com): photo-1721792421861-2fdea5107633 (street),
+ *   photo-1700218626406-e89c763bfbbc (path), photo-1622369053564-6de5f090120a (canopy)
+ */
+export const stock = {
+  street: { src: "/media/stock/street.jpg", alt: "Tree-lined Zambian street with purple jacaranda in bloom", w: 1600, h: 1067 }, // REPLACE
+  path: { src: "/media/stock/path.jpg", alt: "Paved garden path between palms and planted beds", w: 1200, h: 1600 }, // REPLACE
+  canopy: { src: "/media/stock/canopy.jpg", alt: "Green leaves against a clear blue sky", w: 1200, h: 1600 }, // REPLACE
+};
+
 export const hero = {
   lines: [
     { text: "A home that", serif: true },
@@ -92,13 +104,14 @@ export const location = {
   ],
   // REPLACE / confirm these travel-time chips
   chips: ["Minutes to Kitwe town centre", "Quiet residential street", "Easy access to malls & services"],
-  images: [media.facade, media.pool, media.lounge],
+  images: [stock.street, media.facade, stock.path, stock.canopy],
 };
 
 // REPLACE / confirm: well-known Kitwe places for the marquee strips
 export const nearby = {
-  rowA: ["Kitwe Town Centre", "Mukuba Mall", "ECL Mall", "Copperbelt University", "Kitwe Teaching Hospital"],
-  rowB: ["VK Kitwe West · Kalulushi Road", "Nkana Stadium", "Chisokone Market", "Edinburgh Hotel", "Mindolo Dam"],
+  // Malls · hospitals · schools · restaurants & landmarks
+  rowA: ["Kitwe Town Centre", "Mukuba Mall", "ECL Mall", "Kitwe Teaching Hospital", "Copperbelt University", "Lechwe School"],
+  rowB: ["VK Kitwe West · Kalulushi Road", "Mpelembe Secondary School", "Edinburgh Hotel", "Chisokone Market", "Nkana Stadium", "Mindolo Dam"],
 };
 
 export type AmenityIcon = "pool" | "parking" | "shield" | "bolt" | "drop" | "leaf" | "wifi" | "tv" | "snow";
@@ -110,13 +123,13 @@ export const amenities = {
   items: [
     { icon: "pool", title: "Swimming pool", text: "A sparkling pool with loungers and a covered lounge.", image: media.pool },
     { icon: "parking", title: "Secure parking", text: "Paved, gated off-street parking right at your door.", image: media.facade },
-    { icon: "shield", title: "24/7 security", text: "Electric fencing, lighting and a gated compound.", image: media.facade },
-    { icon: "bolt", title: "Backup power", text: "Stay switched on, even during load-shedding.", image: media.living }, // REPLACE: confirm solar / generator
-    { icon: "drop", title: "Reliable water", text: "Constant water supply for showers and kitchen.", image: media.bathroom }, // REPLACE: confirm tank / borehole
     { icon: "wifi", title: "Fast Wi-Fi", text: "Work, stream and video-call from anywhere inside.", image: media.lounge },
+    { icon: "shield", title: "24/7 security", text: "Electric fencing, lighting and a gated compound.", image: media.pool },
+    { icon: "bolt", title: "Backup power", text: "Stay switched on, even during load-shedding.", image: media.kitchen }, // REPLACE: confirm solar / generator
+    { icon: "drop", title: "Reliable water", text: "Constant water supply for showers and kitchen.", image: media.bathroom }, // REPLACE: confirm tank / borehole
     { icon: "tv", title: "DStv", text: "Satellite TV for the match, the news and the movies.", image: media.living },
-    { icon: "snow", title: "Air conditioning", text: "Split-unit AC keeps every apartment cool.", image: media.living },
-    { icon: "leaf", title: "Garden", text: "Landscaped beds, palms and a quiet patio to sit out.", image: media.facade },
+    { icon: "snow", title: "Air conditioning", text: "Split-unit AC keeps every apartment cool.", image: media.dining },
+    { icon: "leaf", title: "Garden", text: "Landscaped beds, palms and a quiet patio to sit out.", image: stock.canopy }, // REPLACE: photo of your garden
   ] as { icon: AmenityIcon; title: string; text: string; image: typeof media.pool }[],
 };
 
@@ -206,13 +219,13 @@ export const gallery = {
 };
 
 export const howToBook = {
-  eyebrow: "How to book",
-  titleSerif: "Three steps",
-  title: "to your stay",
+  eyebrow: "How to rent",
+  titleSerif: "View, apply,",
+  title: "move in",
   steps: [
-    { title: "Choose", text: "Pick a 1, 2 or 3 bedroom apartment and your dates." },
-    { title: "Message or call", text: "WhatsApp or call 057 060 9865. We confirm availability and the total." },
-    { title: "Check in", text: "Arrive, collect your keys and make yourself at home." },
+    { title: "View", text: "Browse the 1, 2 and 3 bedroom apartments here, or ask us for a video walk-through on WhatsApp." },
+    { title: "Apply", text: "Send your dates by WhatsApp or call 057 060 9865. We confirm availability and the total for your stay." },
+    { title: "Move in", text: "Arrive, collect your keys and make yourself at home, for a night or for longer." },
   ],
   payment: {
     title: "Payment",
